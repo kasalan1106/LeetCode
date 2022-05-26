@@ -12,7 +12,7 @@ public:
         
         for(int i = 0; (i < nums.size()) && (calcIndex != nums.size()-1); i++)
         {
-            for(int j = i; j <= i + nums.at(i); j++)
+            for(int j = i; j <= i + nums.at(i) && j < nums.size(); j++)
             {
                 if(steps[j] == -1)
                     steps[j] = steps[i] + 1;
