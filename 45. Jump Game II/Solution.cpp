@@ -1,33 +1,29 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        
-        if(nums.size() == 1)
-            return 0;
-        
-        vector<int> increaseIndex;
-        increaseIndex.push_back(0);
-        
-        int calcIndex = 0;
-        int lastIndex = 0;
-        
-        for(int i = 0; i < nums.size() && calcIndex < nums.size(); i++)
+        int jumpTimes = 0;
+
+        int lastLowerLimit = 0;
+        int lastUpperLimit = 0;
+
+        int currentUpperLimit = lastUpperLimit + 1;
+        int currentLowerLimit = lastUpperLimit + 1;
+        int numsSize = nums.size();
+        while(currentUpperLimit < numsSize-1)
         {
-            int startIndex = i;
-            if(calcIndex > i)
-                startIndex = calcIndex;
-                
-            lastIndex = increaseIndex.at(increaseIndex.size()-1);
-            for(int j = startIndex; j <= i + nums.at(i) && j < nums.size(); j++)
+            jumpTimes ++;
+
+            currentLowerLimit = lastUpperLimit + 1;
+
+            for(int i = lastLowerLimit; i <= lastUpperLimit; i++)
             {
-                if((j + nums.at(j) > lastIndex))
-                    lastIndex = j + nums.at(j);
+                if(currentUpperLimit < i + nums.at(i))
+                    currentUpperLimit = i + nums.at(i);
             }
-            
-            if(lastIndex > increaseIndex.at(increaseIndex.size()-1) &&
-               lastIndex < nums.size())
-                increaseIndex.push_back(lastIndex);
+
+            lastLowerLimit = currentLowerLimit;
+            lastUpperLimit = currentUpperLimit;
         }
-        return increaseIndex.size();
+        return jumpTimes;
     }
 };
