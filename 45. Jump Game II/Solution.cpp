@@ -2,26 +2,29 @@ class Solution {
 public:
     int jump(vector<int>& nums) {
         
-        vector<int> steps;
-        for(int i = 0; i < nums.size(); i++)
-            steps.push_back(-1);
-        
-        steps[0] = 0;
+        vector<int> increaseIndex;
+        increaseIndex.push_back(0);
         
         int calcIndex = 0;
+        int lastIndex = 0;
         
-        for(int i = 0; (i < nums.size()) && (calcIndex != nums.size()-1); i++)
+        for(int i = 0; i < nums.size() && calcIndex < nums.size(); i++)
         {
-            for(int j = i; j <= i + nums.at(i) && j < nums.size(); j++)
+            int startIndex = i;
+            if(calcIndex > i)
+                startIndex = calcIndex;
+                
+            lastIndex = increaseIndex.at(increaseIndex.size()-1);
+            for(int j = startIndex; j <= i + nums.at(i) && j < nums.size(); j++)
             {
-                if(steps[j] == -1)
-                    steps[j] = steps[i] + 1;
+                if((j + nums.at(j) > lastIndex))
+                    lastIndex = j + nums.at(j);
             }
             
-            calcIndex = i + nums.at(i);
+            if(lastIndex > increaseIndex.at(increaseIndex.size()-1))
+                increaseIndex.push_back(lastIndex);
         }
         
-        return steps[nums.size()-1];
+        return increaseIndex.size()-1;
     }
-    
 };
