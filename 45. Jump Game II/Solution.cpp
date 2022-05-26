@@ -9,7 +9,7 @@ public:
         int currentUpperLimit = lastUpperLimit + 1;
         int currentLowerLimit = lastUpperLimit + 1;
         int numsSize = nums.size();
-        while(currentUpperLimit < numsSize-1)
+        while(lastUpperLimit < numsSize-1)
         {
             jumpTimes ++;
 
