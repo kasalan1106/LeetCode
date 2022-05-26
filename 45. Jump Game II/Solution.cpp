@@ -2,6 +2,9 @@ class Solution {
 public:
     int jump(vector<int>& nums) {
         
+        if(nums.size() == 1)
+            return 0;
+        
         vector<int> increaseIndex;
         increaseIndex.push_back(0);
         
@@ -24,7 +27,6 @@ public:
             if(lastIndex > increaseIndex.at(increaseIndex.size()-1))
                 increaseIndex.push_back(lastIndex);
         }
-        
-        return increaseIndex.size()-1;
+        return increaseIndex.size();
     }
 };
