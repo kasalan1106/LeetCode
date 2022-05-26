@@ -24,7 +24,8 @@ public:
                     lastIndex = j + nums.at(j);
             }
             
-            if(lastIndex > increaseIndex.at(increaseIndex.size()-1))
+            if(lastIndex > increaseIndex.at(increaseIndex.size()-1) &&
+               lastIndex < nums.size())
                 increaseIndex.push_back(lastIndex);
         }
         return increaseIndex.size();
