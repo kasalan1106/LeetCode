@@ -7,13 +7,13 @@ public:
         int lastUpperLimit = 0;
 
         int currentUpperLimit = lastUpperLimit + 1;
-        int currentLowerLimit = lastUpperLimit + 1;
-        int numsSize = nums.size();
-        while(lastUpperLimit < numsSize-1)
+        // int currentLowerLimit = lastUpperLimit + 1;
+        // int numsSize = nums.size();
+        while(lastUpperLimit < nums.size()-1)
         {
             jumpTimes ++;
 
-            currentLowerLimit = lastUpperLimit + 1;
+            // currentLowerLimit = lastUpperLimit + 1;
 
             for(int i = lastLowerLimit; i <= lastUpperLimit; i++)
             {
@@ -21,7 +21,7 @@ public:
                     currentUpperLimit = i + nums.at(i);
             }
 
-            lastLowerLimit = currentLowerLimit;
+            lastLowerLimit = lastUpperLimit + 1; //lastLowerLimit = currentLowerLimit;
             lastUpperLimit = currentUpperLimit;
         }
         return jumpTimes;
